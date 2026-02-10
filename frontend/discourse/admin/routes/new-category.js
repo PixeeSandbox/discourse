@@ -14,6 +14,7 @@ function getNewCategoryDefaultColors() {
 }
 
 export default class NewCategory extends DiscourseRoute {
+  @service categoryTypeChooser;
   @service router;
 
   controllerName = "edit-category.tabs";
@@ -59,6 +60,11 @@ export default class NewCategory extends DiscourseRoute {
 
   setupController(controller) {
     super.setupController(...arguments);
+
+    const categoryType = this.categoryTypeChooser.consume();
+    if (categoryType) {
+      controller.model.set("category_type", categoryType);
+    }
 
     controller.selectedTab = "general";
     controller.parentParams = {};

@@ -7,6 +7,7 @@ import AddCategoryTagClasses from "discourse/components/add-category-tag-classes
 import CategoryLogo from "discourse/components/category-logo";
 import DNavigation from "discourse/components/d-navigation";
 import AccessibleDiscoveryHeading from "discourse/components/discovery/accessible-discovery-heading";
+import ChooseCategoryType from "discourse/components/modal/choose-category-type";
 import ReorderCategories from "discourse/components/modal/reorder-categories";
 import PluginOutlet from "discourse/components/plugin-outlet";
 import bodyClass from "discourse/helpers/body-class";
@@ -19,9 +20,11 @@ import DiscourseURL from "discourse/lib/url";
 import Category from "discourse/models/category";
 
 export default class DiscoveryNavigation extends Component {
-  @service router;
+  @service categoryTypeChooser;
   @service currentUser;
   @service modal;
+  @service router;
+  @service siteSettings;
 
   get filterMode() {
     return calculateFilterMode({
@@ -62,7 +65,14 @@ export default class DiscoveryNavigation extends Component {
   }
 
   @action
-  createCategory() {
+  async createCategory() {
+    if (this.siteSettings.enable_simplified_category_creation) {
+      const result = await this.modal.show(ChooseCategoryType);
+      if (!result?.categoryType) {
+        return;
+      }
+      this.categoryTypeChooser.choose(result.categoryType);
+    }
     this.router.transitionTo("newCategory");
   }
 

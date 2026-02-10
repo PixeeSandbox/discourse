@@ -1,6 +1,7 @@
 import { cached } from "@glimmer/tracking";
 import { hash } from "@ember/helper";
 import { service } from "@ember/service";
+import ChooseCategoryType from "discourse/components/modal/choose-category-type";
 import { debounce } from "discourse/lib/decorators";
 import { hasDefaultSidebarCategories } from "discourse/lib/sidebar/helpers";
 import Category from "discourse/models/category";
@@ -16,10 +17,12 @@ export const REFRESH_COUNTS_APP_EVENT_NAME =
 
 export default class SidebarUserCategoriesSection extends CommonCategoriesSection {
   @service appEvents;
+  @service categoryTypeChooser;
   @service currentUser;
   @service modal;
   @service navigationMenu;
   @service router;
+  @service siteSettings;
 
   constructor() {
     super(...arguments);
@@ -67,6 +70,17 @@ export default class SidebarUserCategoriesSection extends CommonCategoriesSectio
     return hasDefaultSidebarCategories(this.siteSettings);
   }
 
+  async createCategory() {
+    if (this.siteSettings.enable_simplified_category_creation) {
+      const result = await this.modal.show(ChooseCategoryType);
+      if (!result?.categoryType) {
+        return;
+      }
+      this.categoryTypeChooser.choose(result.categoryType);
+    }
+    this.router.transitionTo("newCategory");
+  }
+
   @cached
   get headerActions() {
     const actions = [];
@@ -74,7 +88,7 @@ export default class SidebarUserCategoriesSection extends CommonCategoriesSectio
     if (this.currentUser.can_create_category) {
       actions.push({
         id: "new-category",
-        action: () => this.router.transitionTo("newCategory"),
+        action: () => this.createCategory(),
         title: i18n("sidebar.sections.categories.header_action_new"),
       });
     }

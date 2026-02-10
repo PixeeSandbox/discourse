@@ -193,6 +193,7 @@ module SvgSprite
         layer-group
         left-right
         link
+        lightbulb
         link-slash
         list
         list-check

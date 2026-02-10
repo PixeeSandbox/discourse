@@ -4625,6 +4625,10 @@ en:
       delete: "Delete category"
       create: "New category"
       create_long: "Create a new category"
+      choose_type:
+        title: "Choose Category Type"
+        description: "Select the type of category you want to create:"
+        requires_plugin: "Requires plugin"
       save: "Save category"
       slug: "Category slug"
       parent: "Parent category"
