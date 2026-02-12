@@ -490,6 +490,7 @@ RSpec.describe "tasks/version_bump" do
       Dir.chdir(origin_path) do
         expect(run("git", "log", "--pretty=%s", "main").lines.map(&:strip)).to eq(
           [
+            "DEV: Bump development branch to v2025.12.0-latest.1",
             "security fix two",
             "security fix one, commit two",
             "security fix one, commit one",

@@ -476,6 +476,14 @@ namespace :release do
         ReleaseUtils.git "cherry-pick", "#{first_commit_on_branch}^..#{ref}"
       end
 
+      if base == "main"
+        current_version = ReleaseUtils.parse_current_version
+        new_version = current_version.sub(/-latest(\.\d+)?$/) { "-latest.#{$1.to_i + 1}" }
+        ReleaseUtils.write_version(new_version)
+        ReleaseUtils.git "add", "lib/version.rb"
+        ReleaseUtils.git "commit", "-m", "DEV: Bump development branch to v#{new_version}"
+      end
+
       puts "Finished merging commits into a locally-staged #{branch} branch. Git log is:"
       puts ReleaseUtils.git("log", "origin/#{base}..#{branch}")
 
