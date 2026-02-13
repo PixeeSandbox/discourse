@@ -195,6 +195,9 @@ namespace :release do
       previous_version = ReleaseUtils.parse_current_version
     end
 
+    # latest, latest.1, etc should all be treated as the same version here.
+    new_version.sub!(/-latest(\.\d+)?$/, "-latest")
+    previous_version.sub!(/-latest(\.\d+)?$/, "-latest")
     next "version has not changed" if new_version == previous_version
 
     raise "Unexpected previous version" if !previous_version.ends_with? "-latest"

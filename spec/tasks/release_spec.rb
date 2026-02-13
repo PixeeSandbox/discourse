@@ -155,6 +155,18 @@ RSpec.describe "tasks/version_bump" do
       end
     end
 
+    it "tags a security patchlevel development version" do
+      Dir.chdir(local_path) do
+        File.write("lib/version.rb", fake_version_rb("2025.4.0-latest.1"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "bump to 2025.4.0-latest.1"
+        commit_hash = run("git", "rev-parse", "HEAD").strip
+        output = capture_stdout { invoke_rake_task("release:maybe_tag_release", commit_hash) }
+        expect(output).to include("Tagging release v2025.4.0-latest.1")
+        expect(run("git", "tag").lines.map(&:strip)).to include("v2025.4.0-latest.1")
+      end
+    end
+
     it "skips tagging if tag already exists" do
       Dir.chdir(local_path) do
         File.write("lib/version.rb", fake_version_rb("2025.5.0"))
@@ -274,30 +286,90 @@ RSpec.describe "tasks/version_bump" do
     end
   end
 
-  it "can create a new release branch" do
-    latest_hash, previous_hash = nil
+  describe "release:maybe_cut_branch" do
+    it "creates a new release branch when minor version changes" do
+      latest_hash, previous_hash = nil
 
-    Dir.chdir(local_path) do
-      File.write("lib/version.rb", fake_version_rb("2025.1.0-latest"))
-      run "git", "add", "."
-      run "git", "commit", "-m", "developing 2025.1"
+      Dir.chdir(local_path) do
+        File.write("lib/version.rb", fake_version_rb("2025.1.0-latest"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "developing 2025.1"
 
-      previous_hash = run("git", "rev-parse", "HEAD").strip
+        previous_hash = run("git", "rev-parse", "HEAD").strip
 
-      File.write("lib/version.rb", fake_version_rb("2025.2.0-latest"))
-      run "git", "add", "."
-      run "git", "commit", "-m", "begin development of 2025.2-latest"
+        File.write("lib/version.rb", fake_version_rb("2025.2.0-latest"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "begin development of 2025.2-latest"
 
-      latest_hash = run("git", "rev-parse", "HEAD").strip
+        latest_hash = run("git", "rev-parse", "HEAD").strip
 
-      output = capture_stdout { invoke_rake_task("release:maybe_cut_branch", latest_hash) }
-      expect(output).to include("Created new branch")
+        output = capture_stdout { invoke_rake_task("release:maybe_cut_branch", latest_hash) }
+        expect(output).to include("Created new branch")
+      end
+
+      Dir.chdir(origin_path) do
+        run "git", "checkout", "release/2025.1"
+        branch_tip = run("git", "rev-parse", "HEAD").strip
+        expect(branch_tip).to eq(previous_hash)
+      end
     end
 
-    Dir.chdir(origin_path) do
-      run "git", "checkout", "release/2025.1"
-      branch_tip = run("git", "rev-parse", "HEAD").strip
-      expect(branch_tip).to eq(previous_hash)
+    it "does not create a branch when bumping from latest to latest.1" do
+      Dir.chdir(local_path) do
+        # HEAD already has 2025.12.0-latest from the before block
+        File.write("lib/version.rb", fake_version_rb("2025.12.0-latest.1"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "security bump to 2025.12.0-latest.1"
+
+        latest_hash = run("git", "rev-parse", "HEAD").strip
+
+        output = capture_stdout { invoke_rake_task("release:maybe_cut_branch", latest_hash) }
+        expect(output).not_to include("Created new branch")
+      end
+    end
+
+    it "does not create a branch when bumping from latest.1 to latest.2" do
+      Dir.chdir(local_path) do
+        File.write("lib/version.rb", fake_version_rb("2025.12.0-latest.1"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "security bump to 2025.12.0-latest.1"
+
+        File.write("lib/version.rb", fake_version_rb("2025.12.0-latest.2"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "security bump to 2025.12.0-latest.2"
+
+        latest_hash = run("git", "rev-parse", "HEAD").strip
+
+        output = capture_stdout { invoke_rake_task("release:maybe_cut_branch", latest_hash) }
+        expect(output).not_to include("Created new branch")
+      end
+    end
+
+    it "creates a branch when minor version changes even from a patchlevel version" do
+      latest_hash, previous_hash = nil
+
+      Dir.chdir(local_path) do
+        File.write("lib/version.rb", fake_version_rb("2025.11.0-latest.2"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "developing 2025.11 with security patches"
+
+        previous_hash = run("git", "rev-parse", "HEAD").strip
+
+        File.write("lib/version.rb", fake_version_rb("2025.12.0-latest"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "begin development of 2025.12-latest"
+
+        latest_hash = run("git", "rev-parse", "HEAD").strip
+
+        output = capture_stdout { invoke_rake_task("release:maybe_cut_branch", latest_hash) }
+        expect(output).to include("Created new branch")
+      end
+
+      Dir.chdir(origin_path) do
+        run "git", "checkout", "release/2025.11"
+        branch_tip = run("git", "rev-parse", "HEAD").strip
+        expect(branch_tip).to eq(previous_hash)
+      end
     end
   end
 
@@ -327,6 +399,27 @@ RSpec.describe "tasks/version_bump" do
         File.write("lib/version.rb", fake_version_rb("2025.10.0-latest"))
         run "git", "add", "."
         run "git", "commit", "-m", "current month version"
+        run "git", "push", "origin", "main"
+
+        freeze_time Time.utc(2025, 10, 15) do
+          output = capture_stdout { invoke_rake_task("release:prepare_next_version") }
+          expect(output).to include("is already >= 2025.10.0-latest. Incrementing instead.")
+        end
+      end
+
+      Dir.chdir(origin_path) do
+        run "git", "reset", "--hard"
+        run "git", "checkout", "version-bump/main"
+        version_rb_content = File.read("lib/version.rb")
+        expect(version_rb_content).to include('STRING = "2025.11.0-latest"')
+      end
+    end
+
+    it "increments minor version and drops patchlevel when current version has a security patchlevel" do
+      Dir.chdir(local_path) do
+        File.write("lib/version.rb", fake_version_rb("2025.10.0-latest.2"))
+        run "git", "add", "."
+        run "git", "commit", "-m", "current month version with patchlevel"
         run "git", "push", "origin", "main"
 
         freeze_time Time.utc(2025, 10, 15) do
@@ -501,6 +594,9 @@ RSpec.describe "tasks/version_bump" do
         expect(run("git", "show", "main:somefile.txt")).to eq("contents")
         expect(run("git", "show", "main:firstfile.txt")).to eq("contents")
         expect(run("git", "show", "main:secondfile.txt")).to eq("contents")
+        expect(run("git", "show", "main:lib/version.rb")).to match(
+          /STRING = "2025\.12\.0-latest\.1"/,
+        )
       end
     end
   end
