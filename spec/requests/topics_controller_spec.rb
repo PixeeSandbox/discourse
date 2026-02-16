@@ -4187,6 +4187,7 @@ RSpec.describe TopicsController do
         SiteSetting.tag_topic_allowed_groups = Group::AUTO_GROUPS[:trust_level_0]
         tag1 = Fabricate(:tag)
         topic.update!(user:)
+        _first_post = Fabricate(:post, topic:, user:)
 
         put "/topics/bulk.json",
             params: {
@@ -4206,6 +4207,7 @@ RSpec.describe TopicsController do
         SiteSetting.tag_topic_allowed_groups = Group::AUTO_GROUPS[:trust_level_0]
         tag1 = Fabricate(:tag)
         topic.update!(user:)
+        _first_post = Fabricate(:post, topic:, user:)
 
         put "/topics/bulk.json",
             params: {
