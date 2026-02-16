@@ -68,7 +68,7 @@ class PostRevisor
         removed_tags = prev_tags - persisted_tag_names
         diff_tags = added_tags | removed_tags
 
-        if diff_tags.present?
+        if diff_tags.present? && !self.silent
           if !SiteSetting.disable_tags_edit_notifications
             Jobs.enqueue(:notify_tag_change, post_id: post.id, notified_user_ids:, diff_tags:)
           end
