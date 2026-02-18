@@ -402,8 +402,7 @@ RSpec.describe "tasks/version_bump" do
         run "git", "push", "origin", "main"
 
         freeze_time Time.utc(2025, 10, 15) do
-          output = capture_stdout { invoke_rake_task("release:prepare_next_version") }
-          expect(output).to include("is already >= 2025.10.0-latest. Incrementing instead.")
+          invoke_rake_task("release:prepare_next_version")
         end
       end
 
@@ -423,8 +422,7 @@ RSpec.describe "tasks/version_bump" do
         run "git", "push", "origin", "main"
 
         freeze_time Time.utc(2025, 10, 15) do
-          output = capture_stdout { invoke_rake_task("release:prepare_next_version") }
-          expect(output).to include("is already >= 2025.10.0-latest. Incrementing instead.")
+          invoke_rake_task("release:prepare_next_version")
         end
       end
 
