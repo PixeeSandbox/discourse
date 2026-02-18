@@ -4,21 +4,19 @@ module ReleaseUtils
   class Version
     include Comparable
 
+    PRE_RELEASE = "latest"
+
     attr_reader :major, :minor, :patch, :pre, :revision
 
     def initialize(version_string)
       @gem_version = Gem::Version.new(version_string)
 
-      segments = @gem_version.segments
+      segments = gem_version.segments
       @major = segments[0]
       @minor = segments[1] || 1
       @patch = segments[2] || 0
 
-      if @gem_version.prerelease?
-        pre_segments = segments.drop(3).drop_while { |s| s == "pre" }
-        @pre = pre_segments.first
-        @revision = pre_segments[1] if pre_segments.length > 1
-      end
+      @pre, @revision = segments.drop(3).drop_while { it == "pre" } if gem_version.prerelease?
 
       freeze
     end
@@ -26,12 +24,12 @@ module ReleaseUtils
     class << self
       def current
         version_string = File.read("lib/version.rb")[/STRING = "(.*)"/, 1]
-        raise "Unable to parse current version from lib/version.rb" if version_string.nil?
+        raise "Unable to parse current version from lib/version.rb" unless version_string
         new(version_string)
       end
 
       def next
-        target = new("#{Time.current.strftime("%Y.%-m")}.0-latest")
+        target = new("#{Time.current.strftime("%Y.%-m")}.0-#{PRE_RELEASE}")
         return target if target > current
         current.next_development_cycle
       end
@@ -39,7 +37,7 @@ module ReleaseUtils
 
     def <=>(other)
       other = self.class.new(other) if other.is_a?(String)
-      return nil unless other.is_a?(self.class)
+      return unless other.is_a?(self.class)
       gem_version <=> other.gem_version
     end
 
@@ -52,7 +50,7 @@ module ReleaseUtils
     end
 
     def development?
-      pre == "latest"
+      pre == PRE_RELEASE
     end
 
     def series
@@ -68,31 +66,21 @@ module ReleaseUtils
     end
 
     def without_revision
-      return self if revision.nil?
-      self.class.new("#{major}.#{minor}.#{patch}-#{pre}")
+      return self unless revision
+      self.class.new("#{major}.#{minor}.#{patch}-#{PRE_RELEASE}")
     end
 
     def next_development_cycle
-      new_major = major
-      new_minor = minor + 1
-
-      if new_minor > 12
-        new_major += 1
-        new_minor = 1
-      end
-
-      self.class.new("#{new_major}.#{new_minor}.0-latest")
+      carry, new_minor = minor.divmod(12)
+      self.class.new("#{major + carry}.#{new_minor + 1}.0-#{PRE_RELEASE}")
     end
 
-    def bump_revision
-      self.class.new("#{major}.#{minor}.#{patch}-latest.#{(revision || 0) + 1}")
+    def next_revision
+      self.class.new("#{major}.#{minor}.#{patch}-#{PRE_RELEASE}.#{revision.to_i + 1}")
     end
 
     def to_s
-      s = +"#{major}.#{minor}.#{patch}"
-      s << "-#{pre}" if pre
-      s << ".#{revision}" if revision
-      s.freeze
+      "#{major}.#{minor}.#{patch}#{"-#{pre}" if pre}#{".#{revision}" if revision}"
     end
 
     def inspect

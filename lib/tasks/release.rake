@@ -421,7 +421,7 @@ namespace :release do
       end
 
       if base == "main"
-        new_version = ReleaseUtils::Version.current.bump_revision
+        new_version = ReleaseUtils::Version.current.next_revision
         ReleaseUtils.write_version(new_version)
         ReleaseUtils.git "add", "lib/version.rb"
         ReleaseUtils.git "commit", "-m", "DEV: Bump development branch to v#{new_version}"

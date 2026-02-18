@@ -153,13 +153,13 @@ RSpec.describe ReleaseUtils::Version do
     end
   end
 
-  describe "#bump_revision" do
+  describe "#next_revision" do
     it "adds revision 1 to a plain development version" do
-      expect(described_class.new("2025.10.0-latest").bump_revision.to_s).to eq("2025.10.0-latest.1")
+      expect(described_class.new("2025.10.0-latest").next_revision.to_s).to eq("2025.10.0-latest.1")
     end
 
     it "increments an existing revision" do
-      expect(described_class.new("2025.10.0-latest.2").bump_revision.to_s).to eq(
+      expect(described_class.new("2025.10.0-latest.2").next_revision.to_s).to eq(
         "2025.10.0-latest.3",
       )
     end
