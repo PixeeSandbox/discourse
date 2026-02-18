@@ -67,7 +67,7 @@ module ReleaseUtils
 
     def without_revision
       return self unless revision
-      self.class.new("#{major}.#{minor}.#{patch}-#{PRE_RELEASE}")
+      self.class.new("#{major}.#{minor}.#{patch}-#{pre}")
     end
 
     def next_development_cycle
@@ -76,7 +76,8 @@ module ReleaseUtils
     end
 
     def next_revision
-      self.class.new("#{major}.#{minor}.#{patch}-#{PRE_RELEASE}.#{revision.to_i + 1}")
+      raise "next_revision can only be called on development versions" unless development?
+      self.class.new("#{major}.#{minor}.#{patch}-#{pre}.#{revision.to_i + 1}")
     end
 
     def to_s
