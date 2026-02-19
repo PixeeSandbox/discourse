@@ -13,8 +13,8 @@ zh_CN:
   dashboard:
     problem:
       ai_llm_status:
-        other: "<a href='%{base_path}/admin/plugins/discourse-ai/ai-llms/%{target}/edit'>%{model_name}</a> 需要注意。在过去的 %{count} 小时里，它在 %{total_calls} 次中没有回复 %{failed_calls} 次。"
-      ai_credit_soft_limit: "%{model_name} 仅剩余 %{percentage_remaining}% 的积分。积分将在 %{reset_date}时重置。 <a href='%{url}'>查看 AI 模型</a>"
+        other: "<a href='%{base_path}/admin/plugins/discourse-ai/ai-llms/%{target}/edit'>%{model_name}</a> 需要注意。在过去的 %{count} 小时，它在 %{total_calls} 次请求中有 %{failed_calls} 次没有响应。"
+      ai_credit_soft_limit: "%{model_name} 仅剩余 %{percentage_remaining}% 的额度。额度将在 %{reset_date} 重置。<a href='%{url}'>查看 AI 模型</a>"
       ai_credit_hard_limit: "您的 %{model_name}AI 积分已经用完了。AI 功能将在 %{reset_date}之前不可用。 <a href='%{url}'>查看 AI 模型</a>"
   discourse_automation:
     ai:

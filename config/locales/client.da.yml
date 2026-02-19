@@ -3981,7 +3981,18 @@ da:
         one: "Dets synonym slettes også."
         other: "Dets %{count} synonymer slettes også."
       edit_tag: "Rediger mærke navn og beskrivelse"
-      description: "Beskrivelse (maks. 1000 tegn)"
+      description: "Beskrivelse"
+      settings:
+        title: "Indstillinger"
+        general: "Overordnet"
+        back: "Tilbage"
+        name: "Navn"
+        slug: "Alias (Slug)"
+        name_placeholder: "Mærke navn"
+        synonyms_subtitle: "Når følgende tags bruges, vil de blive erstattet med %{name}"
+      localization:
+        name: "Navn"
+        description: "Beskrivelse"
       sort_by: "Sortér efter:"
       sort_by_count: "antal"
       sort_by_name: "navn"
@@ -6073,6 +6084,7 @@ da:
         field_types:
           text: "Tekst"
           textarea: "Tekstområde"
+          date: "Dato"
           confirm: "Bekræft"
           dropdown: "Rulleboks"
           multiselect: "Multivælg"

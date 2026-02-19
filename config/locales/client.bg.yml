@@ -3248,6 +3248,16 @@ bg:
       choose_for_topic: "етикети по желание"
       add_synonyms: "Добави"
       delete_tag: "Изтрийте таг"
+      description: "Описание"
+      settings:
+        title: "Настройки"
+        general: "Основни"
+        back: "Назад"
+        name: "Име"
+        slug: "Slug"
+      localization:
+        name: "Име "
+        description: "Описание"
       sort_by: "Сортирай по:"
       sort_by_count: "брой"
       sort_by_name: "име"
@@ -4329,6 +4339,7 @@ bg:
           title: "Показване в потребителската карта"
         field_types:
           text: "Текст"
+          date: "Дата"
           confirm: "Потвърждение"
           dropdown: "Падащо"
       site_text:

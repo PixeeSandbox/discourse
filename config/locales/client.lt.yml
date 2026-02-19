@@ -3884,6 +3884,16 @@ lt:
       delete_tag: "Ištrinti žymą"
       delete_confirm_no_topics: "Ar tikrai norite ištrinti šią žymą?"
       edit_tag: "Redaguoti žymos pavadinimą ir aprašymą"
+      description: "Aprašymas"
+      settings:
+        title: "Nustatymai"
+        general: "Bendrieji"
+        back: "Atgal"
+        name: "Vardas"
+        name_placeholder: "Žymos pavadinimas"
+      localization:
+        name: "Vardas"
+        description: "Aprašymas"
       sort_by: "Rūšiuoti pagal:"
       sort_by_count: "skaičių"
       sort_by_name: "vardą"
@@ -5454,6 +5464,7 @@ lt:
           enabled: "Ieškoma"
         field_types:
           text: "Tekstas"
+          date: "Data"
           confirm: "Patvirtinimas"
           dropdown: "Išskleidimas"
           multiselect: "Daugialypis pasirinkimas"

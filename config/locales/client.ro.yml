@@ -3601,7 +3601,17 @@ ro:
         few: "Ești sigur că vrei să ștergi această etichetă și să o scoți din %{count} subiecte care o folosesc?"
         other: "Ești sigur că vrei să ștergi această etichetă și să o scoți din %{count} subiecte care o folosesc?"
       delete_confirm_no_topics: "Ești sigur că vrei să ștergi această etichetă?"
-      description: "Descriere (max. 1 000 de caractere)"
+      description: "Descriere"
+      settings:
+        title: "Setări"
+        general: "General"
+        localizations: "Localizări"
+        back: "Înapoi"
+        name: "Nume"
+      localization:
+        locale: "Locală"
+        name: "Nume"
+        description: "Descriere"
       sort_by: "Sortat după:"
       sort_by_count: "contor"
       sort_by_name: "nume"
@@ -5464,6 +5474,7 @@ ro:
         field_types:
           text: "Text"
           textarea: "Zonă text"
+          date: "Dată"
           confirm: "Confirmare"
           dropdown: "Meniu derulant"
       site_text:

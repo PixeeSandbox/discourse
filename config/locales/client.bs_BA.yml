@@ -2954,6 +2954,16 @@ bs_BA:
         one: "Pripadajući sinonim će također biti obrisan."
         few: "Pripadajućih %{count} sinonima će također biti obrisano."
         other: "Pripadajućih %{count} sinonima će također biti obrisano."
+      description: "Opis"
+      settings:
+        title: "Postavke"
+        general: "General"
+        back: "Prethodno"
+        name: "Ime"
+        synonyms_subtitle: "U slučaju da se sljedeće oznake koriste, iste će biti zamijenjene sa %{name}"
+      localization:
+        name: "Ime"
+        description: "Opis"
       sort_by: "Sortiraj po:"
       sort_by_count: "brojenje"
       sort_by_name: "ime"
@@ -4360,6 +4370,7 @@ bs_BA:
           title: "Prikaži na korisničkoj kartici"
         field_types:
           text: "Poruka"
+          date: "Datum"
           confirm: "Confirmation"
           dropdown: "Ispustiti"
       site_text:

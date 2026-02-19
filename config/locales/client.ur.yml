@@ -4817,7 +4817,19 @@ ur:
         other: "اس کے %{count} مترادفات بھی مٹا دیے جائیں گے۔"
       edit_tag: "ٹیگ نام اور تفصیل میں ترمیم کریں"
       edit: "ٹیگ میں ترمیم کریں"
-      description: "تفصیل (زیادہ سے زیادہ 1000 حروف)"
+      description: "تفصیل"
+      settings:
+        title: "سیٹِنگ"
+        general: "عام"
+        localizations: "لوکلائزیشنز"
+        back: "واپس"
+        name: "نام"
+        slug: "سلگ"
+        name_placeholder: "ٹیگ کا نام"
+      localization:
+        locale: "لوکیل"
+        name: "نام"
+        description: "تفصیل"
       sort_by: "ترتیب بہ:"
       sort_by_count: "شمار"
       sort_by_name: "نام"
@@ -7445,6 +7457,7 @@ ur:
             title: "اختیاری"
         field_types:
           text: "ٹیکسٹ"
+          date: "تاریخ"
           confirm: "تصدیق"
           dropdown: "ڈراپ ڈاؤن"
           multiselect: "کثیر الانتخاب"

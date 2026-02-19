@@ -2449,6 +2449,15 @@ sr:
       selector_remove_filter: "uklonite filter"
       choose_for_topic: "opcione oznake"
       add_synonyms: "Dodaj"
+      description: "Opis"
+      settings:
+        title: "Podešavanje"
+        general: "Opšti"
+        back: "Nazad"
+        name: "Ime foruma"
+      localization:
+        name: "Ime foruma"
+        description: "Opis"
       sort_by_count: "broj"
       sort_by_name: "ime foruma"
       upload_instructions: "Jedan po liniji, opciono sa oznakom grupe u formatu 'tag_name, tag_group'."

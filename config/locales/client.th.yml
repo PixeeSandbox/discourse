@@ -2388,6 +2388,16 @@ th:
       add_synonyms: "เพิ่ม"
       delete_tag: "ลบแท็ก"
       delete_confirm_no_topics: "คุณแน่ใจหรือว่าต้องการลบแท็กนี้"
+      description: "รายละเอียด"
+      settings:
+        title: "การตั้งค่า"
+        general: "ทั่วไป"
+        back: "กลับ"
+        name: "ชื่อ"
+        name_placeholder: "ชื่อแท็ก"
+      localization:
+        name: "ชื่อ"
+        description: "รายละเอียด"
       sort_by: "เรียงโดย:"
       sort_by_count: "นับ"
       sort_by_name: "ชื่อ"
@@ -3300,6 +3310,7 @@ th:
           title: "แสดงในข้อมูลสาธารณะ"
         field_types:
           text: "ข้อความ"
+          date: "วันที่"
           confirm: "การยืนยัน"
           dropdown: "ดร็อปดาวน์"
       site_text:

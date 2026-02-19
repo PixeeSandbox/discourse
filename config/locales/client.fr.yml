@@ -295,9 +295,13 @@ fr:
     back_button: "Retour"
     welcome_banner:
       header:
+        new_members: "Bienvenue, %{preferred_display_name}!"
         logged_in_members: "Bienvenue, %{preferred_display_name} !"
         anonymous_members: "Bienvenue sur %{site_name} !"
       search_placeholder: "Recherche"
+    impersonation:
+      notice: "Vous endossez l'identité de %{username}"
+      stop: "Cesser d'endosser l'identité"
     themes:
       default_description: "Par défaut"
       broken_theme_alert: "Il se peut que votre site ne fonctionne pas, car un thème ou un composant comporte des erreurs. Consultez la console du navigateur pour obtenir plus d'informations."
@@ -4693,7 +4697,20 @@ fr:
         one: "Son synonyme sera aussi supprimé."
         other: "Ses %{count} synonymes seront aussi supprimés."
       edit_tag: "Modifier le nom et la description de l'étiquette"
-      description: "Description (maximum 1000 caractères)"
+      description: "Description"
+      settings:
+        title: "Paramètres"
+        general: "Général"
+        localizations: "Localisations"
+        back: "Retour"
+        name: "Nom"
+        slug: "Identifiant"
+        name_placeholder: "Nom de l'étiquette"
+        synonyms_subtitle: "Quand les étiquettes suivantes sont utilisées, elles seront remplacées par %{name}"
+      localization:
+        locale: "Paramètre régional"
+        name: "Nom"
+        description: "Description"
       sort_by: "Trier par :"
       sort_by_count: "nombre"
       sort_by_name: "nom"
@@ -7621,6 +7638,7 @@ fr:
         field_types:
           text: "Texte"
           textarea: "Zone de texte"
+          date: "Date"
           confirm: "Confirmation"
           dropdown: "Menu déroulant"
           multiselect: "Sélection multiple"

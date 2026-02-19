@@ -50,6 +50,8 @@ es:
         description: "Descripción"
         actions: "Acciones"
         settings: "Ajustes"
+        no_channels: "No hay canales de chat asociados a esta categoría"
+        no_channels_body: "Puedes tener varios canales por categoría, que serán accesibles por los mismos miembros que pueden acceder a la categoría según sus ajustes de seguridad. <a href='%{chatBrowseUrl}'>Crear un canal de chat</a>."
       text_copied: Texto copiado en el portapapeles
       link_copied: Enlace copiado en el portapapeles
       back_to_forum: "Foro"
@@ -584,7 +586,9 @@ es:
           one: "%{commaSeparatedUsernames} y %{count} más está escribiendo"
           other: "%{commaSeparatedUsernames} y %{count} más están escribiendo"
       retention_reminders:
+        chat_settings: "Los ajustes de chat"
         indefinitely_short: "indefinidamente"
+        indefinitely_long: "%{chatSettingsLink} están configurados para conservar los mensajes del canal indefinidamente."
         short:
           one: "%{count} día"
           other: "%{count} días"

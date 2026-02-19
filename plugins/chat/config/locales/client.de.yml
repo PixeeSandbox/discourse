@@ -608,9 +608,13 @@ de:
       retention_reminders:
         chat_settings: "Chat-Einstellungen"
         indefinitely_short: "unbestimmt"
+        indefinitely_long: "Die %{chatSettingsLink} wurden so eingestellt, dass Kanalnachrichten zeitlich unbegrenzt gespeichert werden."
         short:
           one: "%{count} Tag"
           other: "%{count} Tage"
+        long:
+          one: "Die %{chatSettingsLink} wurden so eingestellt, dass Kanalnachrichten für %{count} Tag aufbewahrt werden."
+          other: "Die %{chatSettingsLink} wurden so eingestellt, dass Kanalnachrichten für %{count} Tage aufbewahrt werden."
       flags:
         off_topic: "Diese Nachricht ist für die aktuelle Diskussion im Sinne des Kanaltitels nicht relevant und sollte wahrscheinlich an eine andere Stelle verschoben werden."
         inappropriate: "Diese Nachricht enthält Inhalte, die eine vernünftige Person als anstößig, beleidigend oder als Verstoß gegen <a href=\"%{basePath}/guidelines\">unsere Community-Richtlinien</a> ansehen würde."

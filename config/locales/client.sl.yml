@@ -3470,7 +3470,16 @@ sl:
         two: "Izbrisani bosta tudi njeni %{count} sopomenki."
         few: "Izbrisane bodo tudi njene %{count} sopomenke."
         other: "Izbrisanih bo tudi njenih %{count} sopomenk."
-      description: "Opis (največ 1000 znakov)"
+      description: "Opis"
+      settings:
+        title: "Nastavitve"
+        general: "Splošno"
+        back: "Nazaj"
+        name: "Ime"
+        synonyms_subtitle: "Ko bodo uporabljene naslednje oznake, bodo nadomeščene z %{name}"
+      localization:
+        name: "Ime"
+        description: "Opis"
       sort_by: "Uredi po:"
       sort_by_count: "številu"
       sort_by_name: "imenu"
@@ -4708,6 +4717,7 @@ sl:
           title: "Prikaži na uporabnikovi izkaznici"
         field_types:
           text: "Besedilo"
+          date: "Datum"
           confirm: "Potrditev"
           dropdown: "Spustni meni"
       site_text:

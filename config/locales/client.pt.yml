@@ -4306,6 +4306,19 @@ pt:
       delete_confirm_synonyms:
         one: "Seu sinônimo também será excluído."
         other: "Seus %{count} sinônimos também serão excluídos."
+      description: "Descrição"
+      settings:
+        title: "Configurações"
+        general: "Geral"
+        localizations: "Localizações"
+        back: "Anterior"
+        name: "Nome"
+        slug: "Slug"
+        synonyms_subtitle: "Quando as tags seguintes forem usadas, elas serão substituídas por %{name}"
+      localization:
+        locale: "Idioma"
+        name: "Nome"
+        description: "Descrição"
       sort_by: "Ordenar por:"
       sort_by_count: "contagem"
       sort_by_name: "nome"
@@ -5797,6 +5810,7 @@ pt:
           disabled: "Não apresentado no formulário de registo"
         field_types:
           text: "Texto"
+          date: "Data"
           confirm: "Confirmação"
           dropdown: "Lista pendente"
       site_text:

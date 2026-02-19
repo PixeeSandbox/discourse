@@ -5482,7 +5482,19 @@ uk:
         other: "Синоніми %{count} також будуть видалені."
       edit_tag: "Редагувати назву та опис теґу"
       edit: "Редагувати цей тег"
-      description: "Опис (максимум 1000 символів)"
+      description: "Опис"
+      settings:
+        title: "Налаштування"
+        general: "Основний"
+        localizations: "Локалізації"
+        back: "Назад"
+        name: "Імʼя"
+        slug: "Мітка"
+        name_placeholder: "Назва теґу"
+      localization:
+        locale: "Локаль"
+        name: "Імʼя"
+        description: "Опис"
       sort_by: "Сортувати за:"
       sort_by_count: "Кількість"
       sort_by_name: "ім'я"
@@ -8735,6 +8747,7 @@ uk:
         field_types:
           text: "Текст"
           textarea: "Текстове поле"
+          date: "Дата"
           confirm: "Підтвердження"
           dropdown: "Випадаючий список"
           multiselect: "Множинний вибір"

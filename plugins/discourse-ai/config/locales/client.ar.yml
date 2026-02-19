@@ -588,9 +588,12 @@ ar:
         url: "عنوان URL لخدمة استضافة النموذج"
         api_key: "مفتاح API لخدمة استضافة النموذج"
         vision_enabled: "تفعيل الرؤية"
+        allowed_attachment_types: "المرفقات المسموح بها"
+        attachment_types_placeholder: "حدد الامتدادات (مثل pdf أو txt أو docx) أو اكتبها"
         ai_bot_user: "مستخدم روبوت الذكاء الاصطناعي"
         cost_input: "تكلفة الإدخال"
         cost_cached_input: "تكلفة الإدخال المخزنة مؤقتًا"
+        cost_cache_write: "تكلفة كتابة ذاكرة التخزين المؤقت"
         cost_output: "تكلفة الإخراج"
         save: "حفظ"
         edit: "تعديل"
@@ -618,6 +621,10 @@ ar:
           max_tokens_required: "يجب تعيينه إذا لم يتم تحديد الحد الأقصى للاستخدامات"
           max_usages_help: "الحد الأقصى لعدد المرات التي يمكن لكل مستخدم في هذه المجموعة استخدام نموذج الذكاء الاصطناعي فيها خلال المدة المُحدَّدة. يتم تتبع هذه الحصة لكل مستخدم على حدة، ولا تتم مشاركتها عبر المجموعة."
           max_usages_required: "يجب تعيينه إذا لم يتم تحديد الحد الأقصى للرموز"
+        credit_allocation:
+          soft_limit_warning: "متبقي اليوم %{percentage}% من أرصدة الذكاء الاصطناعي لهذا النموذج"
+          hard_limit_warning: "نفدت أرصدة الذكاء الاصطناعي لهذا النموذج. ستكون ميزات الذكاء الاصطناعي التي تَستخدم هذا النموذج غير متاحة حتى %{reset_date}"
+          next_reset: "يُعاد تعيين الأرصدة في %{time}"
         usage:
           ai_bot: "روبوت الذكاء الاصطناعي"
           ai_helper: "مساعد (%{persona})"
@@ -639,6 +646,7 @@ ar:
           anthropic-claude-opus-4-5: "النموذج الأكثر ذكاءً لدى Anthropic"
           anthropic-claude-sonnet-4-5: "التوازن الأمثل بين السرعة والتكلفة"
           anthropic-claude-haiku-4-5: "سريع وفعَّال من حيث التكلفة"
+          google-gemini-3-pro: "النموذج الأكثر ذكاءً لدى Google"
           open_ai-gpt-5-nano: "أسرع وأوفر نموذج GPT-5 من حيث التكلفة"
         preseeded_model_description: "نموذج مفتوح المصدر تم تكوينه مسبقًا باستخدام %{model}"
         configured:

@@ -2681,6 +2681,15 @@ lv:
       tags: "Tagi"
       add_synonyms: "Pievienot"
       delete_tag: "Dzēst tagu"
+      description: "Apraksts"
+      settings:
+        title: "Iestatījumi"
+        general: "Vispārīgi"
+        back: "Atpakaļ"
+        name: "Vārds"
+      localization:
+        name: "Vārds"
+        description: "Apraksts"
       sort_by: "Kārtot pēc:"
       sort_by_count: "skaita"
       sort_by_name: "vārda"
@@ -3741,6 +3750,7 @@ lv:
           title: "Parādīt leitotāja kartē"
         field_types:
           text: "Teksts"
+          date: "Datums"
           confirm: "Apstiprinājums"
           dropdown: "Nolaižams izvēļu saraksts"
       site_text:

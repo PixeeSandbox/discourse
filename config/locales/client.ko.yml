@@ -3525,6 +3525,18 @@ ko:
       delete_confirm_synonyms:
         other: "%{count}개의 동의어도 삭제됩니다."
       edit_tag: "태그 이름 및 설명 편집"
+      description: "내용"
+      settings:
+        title: "설정"
+        general: "일반"
+        back: "뒤로"
+        name: "그룹명"
+        slug: "강타"
+        name_placeholder: "태그명"
+        synonyms_subtitle: "다음 태그를 사용하면 %{name} 으로 대체됩니다"
+      localization:
+        name: "그룹명"
+        description: "내용"
       sort_by: "정렬 기준:"
       sort_by_count: "개수"
       sort_by_name: "이름"
@@ -5246,6 +5258,7 @@ ko:
           disabled: "검색할 수 없음"
         field_types:
           text: "텍스트"
+          date: "날짜"
           confirm: "확인"
           dropdown: "드롭다운"
           multiselect: "다중 선택"

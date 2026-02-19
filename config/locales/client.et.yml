@@ -2548,6 +2548,15 @@ et:
       choose_for_topic: "valikulised sildid"
       add_synonyms: "Lisa"
       delete_tag: "Kustuta silt"
+      description: "Kirjeldus"
+      settings:
+        title: "Seaded"
+        general: "Üldine"
+        back: "Tagasi"
+        name: "Nimi"
+      localization:
+        name: "Nimi"
+        description: "Kirjeldus"
       sort_by: "Järjesta:"
       sort_by_count: "üldarv"
       sort_by_name: "nimi"
@@ -3722,6 +3731,7 @@ et:
           title: "Kuva kasutaja profiilil"
         field_types:
           text: "Tekst"
+          date: "Kuupäev"
           confirm: "Kinnitus"
           dropdown: "Rippmenüü"
       site_text:

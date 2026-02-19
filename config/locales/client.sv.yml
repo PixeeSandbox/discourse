@@ -3960,7 +3960,18 @@ sv:
         one: "Dess synonym kommer också att raderas."
         other: "Dess %{count} synonymer kommer också att raderas."
       edit_tag: "Redigera taggnamn och beskrivning"
-      description: "Beskrivning (max. 1000 tecken)"
+      description: "Beskrivning"
+      settings:
+        title: "Inställningar"
+        general: "Allmänt"
+        back: "Tillbaka"
+        name: "Namn"
+        slug: "Slug"
+        name_placeholder: "Namn på tagg"
+        synonyms_subtitle: "När följande taggar används, kommer de att ersättas med %{name}"
+      localization:
+        name: "Namn"
+        description: "Beskrivning"
       sort_by: "Sortera efter:"
       sort_by_count: "summa"
       sort_by_name: "namn"
@@ -6060,6 +6071,7 @@ sv:
           enabled: "Sökbart"
         field_types:
           text: "Text"
+          date: "Datum"
           confirm: "Bekräftelse"
           dropdown: "Rullgardinsmeny"
           multiselect: "Multival"

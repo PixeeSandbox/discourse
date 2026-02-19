@@ -2865,6 +2865,15 @@ ca:
         one: "Esteu segur que voleu suprimir aquesta etiqueta i eliminar-la del tema %{count} al qual és assignada?"
         other: "Esteu segur que voleu suprimir aquesta etiqueta i eliminar-la dels %{count} temes als quals és assignada?"
       delete_confirm_no_topics: "Esteu segur que voleu suprimir aquesta etiqueta?"
+      description: "Descripció"
+      settings:
+        title: "Configuració"
+        general: "General"
+        back: "Enrere"
+        name: "Nom"
+      localization:
+        name: "Nom"
+        description: "Descripció"
       sort_by: "Ordena per:"
       sort_by_count: "comptabilitza"
       sort_by_name: "nom"
@@ -4284,6 +4293,7 @@ ca:
           title: "Mostra en la targeta d'usuari"
         field_types:
           text: "Text"
+          date: "Data"
           confirm: "Confirmació"
           dropdown: "Desplega"
       site_text:

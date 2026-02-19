@@ -2135,7 +2135,15 @@ id:
       selector_remove_filter: "hapus filter"
       tags: "Label"
       add_synonyms: "Menambahkan"
-      description: "Deskripsi (maks 1000 karakter)"
+      description: "Deskripsi"
+      settings:
+        title: "Pengaturan"
+        general: "Umum"
+        back: "Kembali"
+        name: "Nama"
+      localization:
+        name: "Nama"
+        description: "Deskripsi"
       sort_by_count: "menghitung"
       sort_by_name: "nama"
       bulk_create_button: "Buat"
@@ -2846,6 +2854,8 @@ id:
             title: "Saat mendaftar"
             description: "Saat pengguna baru mendaftar, mereka harus mengisi kolom ini. Pengguna yang sudah ada tidak terpengaruh."
           confirmation: "Ini akan meminta pengguna yang ada untuk mengisi kolom ini dan tidak akan mengizinkan mereka melakukan hal lain di situs Anda hingga kolom tersebut terisi. Lanjutkan?"
+        field_types:
+          date: "Tanggal"
       site_text:
         edit: "Ubah"
         show_outdated: "Hanya tampilkan yang usang/tidak valid"

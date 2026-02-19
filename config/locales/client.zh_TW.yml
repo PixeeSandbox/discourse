@@ -4223,7 +4223,17 @@ zh_TW:
       delete_confirm_synonyms:
         other: "其 %{count} 同義詞也將被刪除。"
       edit_tag: "編輯標記名稱和描述"
-      description: "說明（最多 1000 個字元）"
+      description: "描述"
+      settings:
+        title: "設定"
+        general: "一般"
+        back: "上一步"
+        name: "名稱"
+        slug: "縮寫"
+        name_placeholder: "標記名稱"
+      localization:
+        name: "名稱"
+        description: "描述"
       sort_by: "排序方式："
       sort_by_count: "總數"
       sort_by_name: "名稱"
@@ -6827,6 +6837,7 @@ zh_TW:
           disabled: "不可搜尋"
         field_types:
           text: "文字"
+          date: "日期"
           confirm: "確認"
           dropdown: "下拉"
           multiselect: "多選"

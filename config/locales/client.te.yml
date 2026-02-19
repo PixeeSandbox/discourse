@@ -3939,7 +3939,17 @@ te:
         one: "దీని పర్యాయపదం కూడా తొలగించబడుతుంది."
         other: "దీని %{count} పర్యాయపదాలు కూడా తొలగించబడతాయి."
       edit_tag: "ట్యాగ్ పేరు మరియు వివరణను సవరించండి"
-      description: "వివరణ (గరిష్టంగా 1000 అక్షరాలు)"
+      description: "వివరణ"
+      settings:
+        title: "అమరికలు"
+        general: "సాధారణ"
+        back: "వెనుకకు"
+        name: "పేరు"
+        slug: "స్లగ్"
+        name_placeholder: "ట్యాగ్ పేరు"
+      localization:
+        name: "పేరు"
+        description: "వివరణ"
       sort_by: "క్రమబద్ధీకరించండి:"
       sort_by_count: "గణన ద్వారా"
       sort_by_name: "పేరు"
@@ -6028,6 +6038,7 @@ te:
           enabled: "శోధించదగినది"
         field_types:
           text: "వచనం"
+          date: "తేదీ"
           confirm: "ఖాయము"
           dropdown: "డ్రాప్డౌన్"
           multiselect: "బహుళ ఎంపిక"

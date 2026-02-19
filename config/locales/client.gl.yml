@@ -3192,6 +3192,18 @@ gl:
       delete_confirm_synonyms:
         one: "Tamén se eliminará o seu sinónimo."
         other: "Tamén se eliminarán os seus %{count} sinónimos."
+      description: "Descrición"
+      settings:
+        title: "Configuración"
+        general: "Xeral"
+        back: "Volver"
+        name: "Nome"
+        slug: "Localizador abreviado"
+        name_placeholder: "Nome da etiqueta"
+        synonyms_subtitle: "Cando se usen as seguintes etiquetas, substituílas por %{name}"
+      localization:
+        name: "Nome"
+        description: "Descrición"
       sort_by: "Ordenar por:"
       sort_by_count: "número"
       sort_by_name: "nome"
@@ -4782,6 +4794,7 @@ gl:
           title: "Amosar na tarxeta de usuario"
         field_types:
           text: "Texto"
+          date: "Data"
           confirm: "Confirmación"
           dropdown: "Despregábel"
       site_text:

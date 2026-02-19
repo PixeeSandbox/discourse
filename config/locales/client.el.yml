@@ -4733,7 +4733,18 @@ el:
         other: "Τα %{count} συνώνυμά του θα διαγραφούν επίσης."
       edit_tag: "Επεξεργασία ονόματος και περιγραφής ετικέτας"
       edit: "Επεξεργασία αυτής της ετικέτας"
-      description: "Περιγραφή (μέγιστο 1000 χαρακτήρες)"
+      description: "Περιγραφή"
+      settings:
+        title: "Ρυθμίσεις"
+        general: "Γενικά"
+        back: "Πίσω"
+        name: "Όνομα"
+        slug: "Slug"
+        name_placeholder: "Όνομα ετικέτας"
+        synonyms_subtitle: "Όταν χρησιμοποιούνται οι ακόλουθες ετικέτες, θα αντικατασταθούν με %{name}"
+      localization:
+        name: "Όνομα"
+        description: "Περιγραφή"
       sort_by: "Ταξινόμηση κατά:"
       sort_by_count: "πλήθος"
       sort_by_name: "όνομα"
@@ -7223,6 +7234,7 @@ el:
           enabled: "Αναζητήσιμο"
         field_types:
           text: "Κείμενο"
+          date: "Ημερομηνία"
           confirm: "Επιβεβαίωση"
           dropdown: "Dropdown"
           multiselect: "Πολλαπλή επιλογή"

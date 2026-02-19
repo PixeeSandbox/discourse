@@ -3799,6 +3799,15 @@ sq:
       tags: "Etiketat"
       add_synonyms: "Shto"
       delete_tag: "Fshi etiketën"
+      description: "Përshkrimi"
+      settings:
+        title: "Rregullimet"
+        general: "Karakteristika të përgjithshme"
+        back: "Kthehu mbrapa"
+        name: "Emri"
+      localization:
+        name: "Emri"
+        description: "Përshkrimi"
       sort_by: "Rendit sipas:"
       sort_by_count: "numri"
       sort_by_name: "emër"

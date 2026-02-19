@@ -417,7 +417,14 @@ de:
       pill: "Empfohlen"
       pm_title: "Vorgeschlagene Nachrichten"
     admin_onboarding_banner:
+      launch_in_easy_steps: "Starte in %{step_count} einfachen Schritten"
+      skipped: "Die Checkliste für das Onboarding von Administratoren wurde übersprungen. Um sie wieder zu aktivieren, suche in den Website-Einstellungen nach „enable site owner onboarding“."
+      congrats_onboarding_complete: "Herzlichen Glückwunsch zum Abschluss des Onboarding-Prozesses!"
+      invite_collaborators:
+        title: "Mitstreiter einladen"
+        action: "Einladung erstellen"
       start_posting:
+        title: "Beginne mit dem Erstellen von Beiträgen"
         description: "Gib den Leuten etwas, worüber sie gemeinsam reden können"
         icebreakers:
           fun_facts:
@@ -608,6 +615,9 @@ de:
         other_drafts:
           one: "+%{count} anderer Entwurf"
           other: "+%{count} andere Entwürfe"
+    embed_mode:
+      allow_access: "Zugriff erlauben"
+      continue_as_guest: "Als Gast fortfahren"
     topic_count_all:
       one: "Zeige %{count} neues Thema"
       other: "Zeige %{count} neue Themen"
@@ -4352,6 +4362,9 @@ de:
         reply: "Antworten"
         create: "Erstellen"
         no_groups_selected: "Es wurde keinen Gruppen Zugriff gewährt. Diese Kategorie ist nur für das Team sichtbar."
+        everyone_full_access: 'Diese Kategorie ist öffentlich, jeder kann Beiträge sehen, beantworten und erstellen. Entferne eine oder mehrere der Berechtigungen, die der Gruppe „%{everyone_group}“ erteilt wurden, um die Berechtigungen einzuschränken.'
+        everyone_reply_access: 'Diese Kategorie ist öffentlich, jeder kann Beiträge sehen und auf Themen antworten. Entferne die Gruppe „%{everyone_group}“, um die Berechtigungen einzuschränken.'
+        everyone_see_access: 'Diese Kategorie ist öffentlich, jeder kann die Beiträge sehen. Entferne die Gruppe „%{everyone_group}“, um die Berechtigungen einzuschränken.'
         specific_groups_have_access: "Diese Kategorie ist privat. Nur die ausgewählten Gruppen können Beiträge sehen, beantworten und erstellen."
         all_parent_groups_used: "Alle Gruppen aus der übergeordneten Kategorie sind hinzugefügt worden. Um weitere Gruppen hinzuzufügen, füge sie zuerst der übergeordneten Kategorie hinzu."
         toggle_reply: "Antwortberechtigung umschalten"
@@ -4940,7 +4953,20 @@ de:
         other: "Es werden %{count} weitere Synonyme ebenfalls gelöscht."
       edit_tag: "Name und Beschreibung des Schlagwortes bearbeiten"
       edit: "Dieses Schlagwort bearbeiten"
-      description: "Beschreibung (max. 1000 Zeichen)"
+      description: "Beschreibung"
+      settings:
+        title: "Einstellungen"
+        general: "Allgemein"
+        localizations: "Lokalisierungen"
+        back: "Zurück"
+        name: "Name"
+        slug: "Sprechender Name für URL"
+        name_placeholder: "Name des Schlagworts"
+        synonyms_subtitle: "Wenn die folgenden Schlagwörter verwendet werden, werden sie durch %{name} ersetzt"
+      localization:
+        locale: "Gebietsschema"
+        name: "Name"
+        description: "Beschreibung"
       sort_by: "Sortieren nach:"
       sort_by_count: "Anzahl"
       sort_by_name: "Name"
@@ -5506,6 +5532,7 @@ de:
         no_changes_to_save: "Keine Änderungen zu speichern"
         select_groups: "Gruppen auswählen …"
         opt_in_groups: "Gruppenweise Aktivierung"
+        show_related_settings: "Verwandte Einstellungen anzeigen..."
         opt_in_groups_instructions: "Die gruppenweise Aktivierung kann verwendet werden, um einer bestimmten Benutzergruppe zu ermöglichen, eine Änderung zu testen, bevor sie für alle veröffentlicht wird. Beachte, dass diese Gruppen irrelevant werden, sobald eine Änderung den Status „dauerhaft“ erreicht."
         enabled_for_throttle: "Du hast zu schnell geändert, für wen diese Änderung aktiviert ist. Bitte warte ein paar Sekunden, bevor du es erneut versuchst."
         change_enabled_for_success: "Du hast diese Änderung für %{enabledFor} aktiviert."
@@ -6217,6 +6244,7 @@ de:
         cancel: "Abbrechen"
         continue: "Weiter"
         copy_key: "Kopieren"
+        key_copied_to_clipboard: "API-Schlüssel in die Zwischenablage kopiert"
         back: "Zurück zu API-Schlüsseln"
         revoke: "Widerrufen"
         undo_revoke: "Widerruf rückgängig machen"
@@ -8078,6 +8106,7 @@ de:
         field_types:
           text: "Text"
           textarea: "Textbereich"
+          date: "Datum"
           confirm: "Bestätigung"
           dropdown: "Drop-down-Liste"
           multiselect: "Mehrfachauswahl"
