@@ -47,6 +47,85 @@ RSpec.describe ReleaseUtils::Version do
     end
   end
 
+  describe ".current" do
+    subject(:version) { described_class.current }
+
+    before { allow(File).to receive(:read).with("lib/version.rb").and_return(version_rb) }
+
+    context "with a valid version file" do
+      let(:version_rb) { "STRING = \"2025.10.0-latest\"" }
+      let(:expected_version) { described_class.new("2025.10.0-latest") }
+
+      it { is_expected.to eq expected_version }
+    end
+
+    context "with no version string" do
+      let(:version_rb) { "no version here" }
+
+      it { expect { version }.to raise_error(RuntimeError, /Unable to parse/) }
+    end
+  end
+
+  describe ".next" do
+    subject(:next_version) { described_class.next }
+
+    before do
+      allow(File).to receive(:read).with("lib/version.rb").and_return(
+        "STRING = \"#{current_version}\"",
+      )
+    end
+
+    context "when current version is older than the target month" do
+      let(:current_version) { "2025.1.0-latest" }
+
+      it "jumps to the current month" do
+        freeze_time "2025-09-15" do
+          expect(next_version).to eq("2025.9.0-latest")
+        end
+      end
+    end
+
+    context "when current version matches the target month" do
+      let(:current_version) { "2025.10.0-latest" }
+
+      it "increments to the next month" do
+        freeze_time "2025-10-15" do
+          expect(next_version).to eq("2025.11.0-latest")
+        end
+      end
+    end
+
+    context "when current version is ahead of the target month" do
+      let(:current_version) { "2025.11.0-latest" }
+
+      it "increments to the next month" do
+        freeze_time "2025-10-15" do
+          expect(next_version).to eq("2025.12.0-latest")
+        end
+      end
+    end
+
+    context "when current version has a revision" do
+      let(:current_version) { "2025.10.0-latest.2" }
+
+      it "increments to the next month without revision" do
+        freeze_time "2025-10-15" do
+          expect(next_version).to eq("2025.11.0-latest")
+        end
+      end
+    end
+
+    context "when incrementing past December" do
+      let(:current_version) { "2025.12.0-latest" }
+
+      it "rolls over to next year" do
+        freeze_time "2025-12-15" do
+          expect(next_version).to eq("2026.1.0-latest")
+        end
+      end
+    end
+  end
+
   describe "#to_s" do
     subject(:version_string) { described_class.new(input).to_s }
 
@@ -128,6 +207,68 @@ RSpec.describe ReleaseUtils::Version do
     end
   end
 
+  describe "#same_development_cycle?" do
+    subject(:version) { described_class.new(version_string) }
+
+    RSpec::Matchers.alias_matcher :share_development_cycle_with, :be_same_development_cycle
+
+    context "with two development versions in the same cycle" do
+      let(:version_string) { "2025.10.0-latest" }
+
+      it { is_expected.to share_development_cycle_with(described_class.new("2025.10.0-latest")) }
+    end
+
+    context "with development versions differing only in revision" do
+      let(:version_string) { "2025.10.0-latest.1" }
+
+      it { is_expected.to share_development_cycle_with(described_class.new("2025.10.0-latest.2")) }
+    end
+
+    context "with development versions in different cycles" do
+      let(:version_string) { "2025.10.0-latest" }
+
+      it do
+        is_expected.not_to share_development_cycle_with(described_class.new("2025.11.0-latest"))
+      end
+    end
+
+    context "when one version is a release" do
+      let(:version_string) { "2025.10.0-latest" }
+
+      it { is_expected.not_to share_development_cycle_with(described_class.new("2025.10.0")) }
+    end
+
+    context "when both versions are releases" do
+      let(:version_string) { "2025.10.0" }
+
+      it { is_expected.not_to share_development_cycle_with(described_class.new("2025.10.0")) }
+    end
+  end
+
+  describe "#same_series?" do
+    subject(:version) { described_class.new(version_string) }
+
+    RSpec::Matchers.alias_matcher :share_series_with, :be_same_series
+
+    context "with versions in the same series" do
+      let(:version_string) { "2025.10.0" }
+
+      it { is_expected.to share_series_with(described_class.new("2025.10.1")) }
+    end
+
+    context "with a release and development version in the same series" do
+      let(:version_string) { "2025.10.0" }
+
+      it { is_expected.to share_series_with(described_class.new("2025.10.0-latest")) }
+    end
+
+    context "with versions in different series" do
+      let(:version_string) { "2025.10.0" }
+
+      it { is_expected.not_to share_series_with(described_class.new("2025.11.0")) }
+    end
+  end
+
   describe "#series" do
     subject(:series) { described_class.new(version_string).series }
 
@@ -178,7 +319,7 @@ RSpec.describe ReleaseUtils::Version do
     context "with a development version with revision" do
       let(:version) { described_class.new("2025.10.0-latest.2") }
 
-      it { expect(without_revision.to_s).to eq("2025.10.0-latest") }
+      it { is_expected.to eq("2025.10.0-latest") }
     end
 
     context "with a development version without revision" do
@@ -195,7 +336,7 @@ RSpec.describe ReleaseUtils::Version do
   end
 
   describe "#next_development_cycle" do
-    subject(:next_version) { described_class.new(version_string).next_development_cycle.to_s }
+    subject(:next_version) { described_class.new(version_string).next_development_cycle }
 
     context "with a standard development version" do
       let(:version_string) { "2025.10.0-latest" }
@@ -217,7 +358,7 @@ RSpec.describe ReleaseUtils::Version do
   end
 
   describe "#next_revision" do
-    subject(:next_version) { described_class.new(version_string).next_revision.to_s }
+    subject(:next_version) { described_class.new(version_string).next_revision }
 
     context "with a plain development version" do
       let(:version_string) { "2025.10.0-latest" }
