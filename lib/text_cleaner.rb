@@ -6,6 +6,7 @@
 
 # We use ActiveSupport mb_chars from here to properly support non ascii downcase
 require "active_support/core_ext/string/multibyte"
+require "commonmarker"
 
 class TextCleaner
   def self.title_options

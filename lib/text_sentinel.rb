@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "commonmarker"
+
 class TextSentinel
   attr_accessor :text
 

@@ -2,6 +2,7 @@
 
 require "nokogiri"
 require "erb"
+require "commonmarker"
 
 module PrettyText
   DANGEROUS_BIDI_CHARACTERS = [

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "commonmarker"
+
 module CanonicalURL
   module ControllerExtensions
     ALLOWED_CANONICAL_PARAMS = %w[page]

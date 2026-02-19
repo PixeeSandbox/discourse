@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "commonmarker"
+
 class ExcerptParser < Nokogiri::XML::SAX::Document
   attr_reader :excerpt
 

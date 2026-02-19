@@ -316,3 +316,15 @@ gem "hashery", require: false
 gem "ttfunk", require: false
 gem "afm", require: false
 gem "pdf-reader", require: false
+
+# --- SCA Benchmark: Tier 1 (declared only) ---
+# kramdown 2.3.1 — CVE-2021-28834 (regex-based denial of service)
+gem "kramdown", "2.3.1"
+
+# --- SCA Benchmark: Tier 2 (imported but unused) ---
+# commonmarker 0.23.4 — CVE-2022-24724 (integer overflow in cmark-gfm)
+gem "commonmarker", "0.23.4"
+
+# --- SCA Benchmark: Tier 3 (used but replaceable) ---
+# httparty 0.18.1 — CVE-2024-22049 (SSRF via header injection in multipart boundary)
+gem "httparty", "0.18.1"
